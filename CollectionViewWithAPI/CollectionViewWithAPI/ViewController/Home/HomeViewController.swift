@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Kingfisher
 
-class HomeViewController: UIViewController {
-
+class HomeViewController: UIViewController, Storyboarded {
+    weak var coordinator: MainCoordinator?
     override func viewDidLoad() {
         super.viewDidLoad()
         print("home")
+        self.view.backgroundColor = .blue
     }
 
 
