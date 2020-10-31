@@ -22,7 +22,7 @@ enum ResponseResult<T> {
 }
 
 enum EventService<T: Codable> {
-    case allEvents
+    case fetchProducts
 
 }
 
@@ -34,7 +34,7 @@ extension EventService: GenericServiceProtocol {
     
     private var path: String {
         switch self {
-        case .allEvents:
+        case .fetchProducts:
             return "sandbox/products"
     
         }
@@ -57,7 +57,7 @@ extension EventService: GenericServiceProtocol {
         
         switch self {
         default:
-            ""
+        ""
         }
         return header
     }

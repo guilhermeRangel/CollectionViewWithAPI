@@ -28,6 +28,10 @@
 		77EC11CD254E030500E7BAFC /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11CC254E030500E7BAFC /* Products.swift */; };
 		77EC11D0254E033100E7BAFC /* Spotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11CF254E033100E7BAFC /* Spotlight.swift */; };
 		77EC11D3254E037200E7BAFC /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11D2254E037200E7BAFC /* Results.swift */; };
+		77EC11D6254E03CC00E7BAFC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11D5254E03CC00E7BAFC /* HomeViewModel.swift */; };
+		77EC11D9254E03FB00E7BAFC /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11D8254E03FB00E7BAFC /* DetailsViewModel.swift */; };
+		77EC11DC254E044300E7BAFC /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11DB254E044300E7BAFC /* HomeService.swift */; };
+		77EC11DF254E045300E7BAFC /* DetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11DE254E045300E7BAFC /* DetailService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +59,10 @@
 		77EC11CC254E030500E7BAFC /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
 		77EC11CF254E033100E7BAFC /* Spotlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotlight.swift; sourceTree = "<group>"; };
 		77EC11D2254E037200E7BAFC /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
+		77EC11D5254E03CC00E7BAFC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		77EC11D8254E03FB00E7BAFC /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		77EC11DB254E044300E7BAFC /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		77EC11DE254E045300E7BAFC /* DetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailService.swift; sourceTree = "<group>"; };
 		C3819456056A9C846A60F1BE /* Pods-CollectionViewWithAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollectionViewWithAPI.debug.xcconfig"; path = "Target Support Files/Pods-CollectionViewWithAPI/Pods-CollectionViewWithAPI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				77A3C5BC254DFA00000C6F5B /* API.swift */,
+				77EC11DB254E044300E7BAFC /* HomeService.swift */,
+				77EC11DE254E045300E7BAFC /* DetailService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -178,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				77A3C59C254DF799000C6F5B /* HomeViewController.swift */,
+				77EC11D5254E03CC00E7BAFC /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -186,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				77A3C5C9254DFC87000C6F5B /* DetailsViewController.swift */,
+				77EC11D8254E03FB00E7BAFC /* DetailsViewModel.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -328,12 +340,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77EC11D6254E03CC00E7BAFC /* HomeViewModel.swift in Sources */,
 				77A3C5C1254DFAE3000C6F5B /* Extensions.swift in Sources */,
+				77EC11DF254E045300E7BAFC /* DetailService.swift in Sources */,
 				77EC11C5254E014400E7BAFC /* DetailsCoordinator.swift in Sources */,
 				77EC11B3254DFD4500E7BAFC /* MainCoordinator.swift in Sources */,
 				77EC11CD254E030500E7BAFC /* Products.swift in Sources */,
 				77A3C59D254DF799000C6F5B /* HomeViewController.swift in Sources */,
 				77A3C599254DF799000C6F5B /* AppDelegate.swift in Sources */,
+				77EC11DC254E044300E7BAFC /* HomeService.swift in Sources */,
 				77A3C5BD254DFA00000C6F5B /* API.swift in Sources */,
 				77A3C5CA254DFC87000C6F5B /* DetailsViewController.swift in Sources */,
 				77A3C59B254DF799000C6F5B /* SceneDelegate.swift in Sources */,
@@ -344,6 +359,7 @@
 				77EC11D0254E033100E7BAFC /* Spotlight.swift in Sources */,
 				77EC11B6254DFDAA00E7BAFC /* Coordinator.swift in Sources */,
 				77EC11BC254DFDE200E7BAFC /* HomeCoordinator.swift in Sources */,
+				77EC11D9254E03FB00E7BAFC /* DetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
