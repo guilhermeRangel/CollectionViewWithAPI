@@ -16,6 +16,10 @@ class HomeViewController: UIViewController, Storyboarded {
         self.view.backgroundColor = .blue
     }
 
-
+    @IBAction func btnNextPage(_ sender: UIButton) {
+        
+        coordinator?.goToDetails()
+    }
+    
 }
 

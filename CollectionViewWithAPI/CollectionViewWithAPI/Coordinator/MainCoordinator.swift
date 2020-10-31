@@ -33,7 +33,12 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         child.goToHome()
     }
     
-
+    func goToDetails(){
+        let child = DetailsCoordinator(navigationController: navigationController)
+        childCoordinators.append(child)
+        child.parentCoordinator = self
+        child.goToDetails()
+    }
 
     
     // MARK: - Global Coordinator
@@ -63,6 +68,12 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         if let homeViewController = fromViewController as? HomeViewController {
             childDidFinish(homeViewController.coordinator)
         }
+        
+        if let detailsViewController = fromViewController as? DetailsViewController {
+            childDidFinish(detailsViewController.coordinator)
+        }
+        
+        
     }
 }
 
