@@ -24,6 +24,10 @@
 		77EC11B9254DFDC700E7BAFC /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11B8254DFDC700E7BAFC /* Storyboarded.swift */; };
 		77EC11BC254DFDE200E7BAFC /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11BB254DFDE200E7BAFC /* HomeCoordinator.swift */; };
 		77EC11C5254E014400E7BAFC /* DetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11C4254E014400E7BAFC /* DetailsCoordinator.swift */; };
+		77EC11CA254E02DA00E7BAFC /* Cash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11C9254E02DA00E7BAFC /* Cash.swift */; };
+		77EC11CD254E030500E7BAFC /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11CC254E030500E7BAFC /* Products.swift */; };
+		77EC11D0254E033100E7BAFC /* Spotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11CF254E033100E7BAFC /* Spotlight.swift */; };
+		77EC11D3254E037200E7BAFC /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC11D2254E037200E7BAFC /* Results.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +51,10 @@
 		77EC11B8254DFDC700E7BAFC /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		77EC11BB254DFDE200E7BAFC /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		77EC11C4254E014400E7BAFC /* DetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCoordinator.swift; sourceTree = "<group>"; };
+		77EC11C9254E02DA00E7BAFC /* Cash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cash.swift; sourceTree = "<group>"; };
+		77EC11CC254E030500E7BAFC /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
+		77EC11CF254E033100E7BAFC /* Spotlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotlight.swift; sourceTree = "<group>"; };
+		77EC11D2254E037200E7BAFC /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		C3819456056A9C846A60F1BE /* Pods-CollectionViewWithAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollectionViewWithAPI.debug.xcconfig"; path = "Target Support Files/Pods-CollectionViewWithAPI/Pods-CollectionViewWithAPI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +110,7 @@
 			children = (
 				77A3C5B6254DF97F000C6F5B /* ViewController */,
 				77A3C5B7254DF985000C6F5B /* View */,
+				77EC11C8254E027000E7BAFC /* Model */,
 				77A3C5B8254DF98C000C6F5B /* Components */,
 				77A3C5B9254DF9AE000C6F5B /* Network */,
 				77A3C5D0254DFCB8000C6F5B /* Coordinator */,
@@ -191,6 +200,17 @@
 				77EC11C4254E014400E7BAFC /* DetailsCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		77EC11C8254E027000E7BAFC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				77EC11C9254E02DA00E7BAFC /* Cash.swift */,
+				77EC11CC254E030500E7BAFC /* Products.swift */,
+				77EC11CF254E033100E7BAFC /* Spotlight.swift */,
+				77EC11D2254E037200E7BAFC /* Results.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,13 +331,17 @@
 				77A3C5C1254DFAE3000C6F5B /* Extensions.swift in Sources */,
 				77EC11C5254E014400E7BAFC /* DetailsCoordinator.swift in Sources */,
 				77EC11B3254DFD4500E7BAFC /* MainCoordinator.swift in Sources */,
+				77EC11CD254E030500E7BAFC /* Products.swift in Sources */,
 				77A3C59D254DF799000C6F5B /* HomeViewController.swift in Sources */,
 				77A3C599254DF799000C6F5B /* AppDelegate.swift in Sources */,
 				77A3C5BD254DFA00000C6F5B /* API.swift in Sources */,
 				77A3C5CA254DFC87000C6F5B /* DetailsViewController.swift in Sources */,
 				77A3C59B254DF799000C6F5B /* SceneDelegate.swift in Sources */,
+				77EC11CA254E02DA00E7BAFC /* Cash.swift in Sources */,
+				77EC11D3254E037200E7BAFC /* Results.swift in Sources */,
 				77EC11B9254DFDC700E7BAFC /* Storyboarded.swift in Sources */,
 				77A3C5C4254DFBBD000C6F5B /* Constants.swift in Sources */,
+				77EC11D0254E033100E7BAFC /* Spotlight.swift in Sources */,
 				77EC11B6254DFDAA00E7BAFC /* Coordinator.swift in Sources */,
 				77EC11BC254DFDE200E7BAFC /* HomeCoordinator.swift in Sources */,
 			);
