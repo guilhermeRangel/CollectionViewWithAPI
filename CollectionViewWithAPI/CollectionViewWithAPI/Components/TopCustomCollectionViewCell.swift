@@ -7,8 +7,8 @@
 
 import UIKit
 
-class CustomCollectionViewCell: UICollectionViewCell {
-    static let indentfier = "CustomCollectionViewCell"
+class TopCustomCollectionViewCell: UICollectionViewCell {
+    static let indentfier = "TopCustomCollectionViewCell"
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -20,6 +20,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.backgroundColor = .red
         contentView.addSubview(imageView)
     }
     required init?(coder: NSCoder) {
