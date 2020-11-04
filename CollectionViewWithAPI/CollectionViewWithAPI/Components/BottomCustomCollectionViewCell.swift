@@ -14,14 +14,22 @@ class BottomCustomCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "loading")
         imageView.contentMode = .scaleAspectFit
-        
+        imageView.backgroundColor = .red
         return imageView
     }()
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .yellow
         contentView.addSubview(imageView)
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+    
+        print(imageView.frame)
+        contentView.clipsToBounds = true
+       
     }
     required init?(coder: NSCoder) {
         fatalError("coder has not implemented")
@@ -29,7 +37,8 @@ class BottomCustomCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageView.frame = CGRect(x: 0, y: 0, width: contentView.frame.size.width, height: contentView.frame.size.height)
-        contentView.clipsToBounds = true
+        imageView.frame = CGRect(x: .zero, y: .zero, width: contentView.frame.size.width * 0.5, height: contentView.frame.size.height)
+  
+    
     }
 }
