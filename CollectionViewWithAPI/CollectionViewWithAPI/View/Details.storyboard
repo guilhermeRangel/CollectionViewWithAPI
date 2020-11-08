@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,16 +17,59 @@
                     <view key="view" contentMode="scaleToFill" id="oxl-Ir-LFO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8ee-WF-oBB">
+                                <rect key="frame" x="16" y="138" width="382" height="260"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="260" id="dV9-dv-xRA"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7Q-Of-DvG">
+                                <rect key="frame" x="16" y="427" width="382" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="WDy-5B-qac"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" name="DefaultElementsColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ISi-hS-Bzq">
+                                <rect key="frame" x="16" y="493" width="382" height="266"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" name="DefaultElementsColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="kG9-G8-3XA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kG9-G8-3XA" firstAttribute="bottom" secondItem="ISi-hS-Bzq" secondAttribute="bottom" constant="103" id="0gu-4o-7XU"/>
+                            <constraint firstItem="Z7Q-Of-DvG" firstAttribute="top" secondItem="8ee-WF-oBB" secondAttribute="bottom" constant="29" id="CyI-ZN-AxI"/>
+                            <constraint firstItem="Z7Q-Of-DvG" firstAttribute="trailing" secondItem="ISi-hS-Bzq" secondAttribute="trailing" id="HUA-GL-N1g"/>
+                            <constraint firstItem="8ee-WF-oBB" firstAttribute="centerX" secondItem="oxl-Ir-LFO" secondAttribute="centerX" id="KC3-4k-6tD"/>
+                            <constraint firstItem="Z7Q-Of-DvG" firstAttribute="leading" secondItem="ISi-hS-Bzq" secondAttribute="leading" id="RQA-bS-QsI"/>
+                            <constraint firstItem="8ee-WF-oBB" firstAttribute="top" secondItem="kG9-G8-3XA" secondAttribute="top" constant="94" id="SHt-oD-kOD"/>
+                            <constraint firstItem="8ee-WF-oBB" firstAttribute="trailing" secondItem="Z7Q-Of-DvG" secondAttribute="trailing" id="Uik-uf-M1L"/>
+                            <constraint firstItem="8ee-WF-oBB" firstAttribute="leading" secondItem="kG9-G8-3XA" secondAttribute="leading" constant="16" id="Wjr-lx-bVT"/>
+                            <constraint firstItem="ISi-hS-Bzq" firstAttribute="top" secondItem="Z7Q-Of-DvG" secondAttribute="bottom" constant="16" id="l2R-LO-SOt"/>
+                            <constraint firstItem="8ee-WF-oBB" firstAttribute="leading" secondItem="Z7Q-Of-DvG" secondAttribute="leading" id="tEi-QB-Knq"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="descriptionDetails" destination="ISi-hS-Bzq" id="UbN-UF-nnK"/>
+                        <outlet property="imageView" destination="8ee-WF-oBB" id="66H-2V-n1m"/>
+                        <outlet property="titleDetails" destination="Z7Q-Of-DvG" id="2gj-VU-ftT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fi-ue-XIS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133" y="87"/>
+            <point key="canvasLocation" x="131.8840579710145" y="86.383928571428569"/>
         </scene>
     </scenes>
     <resources>
+        <namedColor name="DefaultElementsColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

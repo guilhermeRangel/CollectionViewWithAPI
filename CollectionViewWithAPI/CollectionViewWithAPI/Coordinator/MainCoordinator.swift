@@ -21,6 +21,7 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     //MARK: - Start Coordinator
     func start() {
         let child = HomeCoordinator(navigationController: navigationController)
+        
         childCoordinators.append(child)
         child.parentCoordinator = self
         child.start()
@@ -33,11 +34,12 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         child.goToHome()
     }
     
-    func goToDetails(result: Results, index: IndexPath){
+    func goToDetails(result: Results, viewType: Any, index: IndexPath){
         let child = DetailsCoordinator(navigationController: navigationController)
         childCoordinators.append(child)
+        navigationController.isNavigationBarHidden = false
         child.parentCoordinator = self
-        child.goToDetails(result: result, index: index)
+        child.goToDetails(result: result, viewType: viewType, index: index)
     }
 
     
@@ -54,7 +56,7 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     //MARK: - Common
     func removeAllChild() {
         childCoordinators.removeAll()
-        print("coordinator: ", childCoordinators)
+       
     }
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {

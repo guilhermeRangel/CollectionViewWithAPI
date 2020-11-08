@@ -13,7 +13,10 @@ class BottomCustomCollectionViewCell: UICollectionViewCell {
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "loading")
+
         imageView.contentMode = .scaleAspectFit
+       
+        imageView.center = .zero
         return imageView
     }()
     
@@ -25,8 +28,10 @@ class BottomCustomCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.clipsToBounds = true
+    
        
     }
+   
     required init?(coder: NSCoder) {
         fatalError("coder has not implemented")
     }

@@ -12,10 +12,9 @@ class HeaderCollectionView: UICollectionReusableView  {
     
     var label: UILabel = {
          let label: UILabel = UILabel()
-         label.textColor = .black
-         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = ColorSystem.defaultElementsColor
+         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
          label.sizeToFit()
-//        label.backgroundColor = .purple
          return label
      }()
     
@@ -23,7 +22,7 @@ class HeaderCollectionView: UICollectionReusableView  {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "goK")
         imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 15
+       
         return imageView
     }()
     
@@ -32,9 +31,12 @@ class HeaderCollectionView: UICollectionReusableView  {
   
        self.addSubview(label)
         self.addSubview(imageView)
+        
+        
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        label.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 40).isActive = true
+        label.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
+        label.leftAnchor.constraint(equalTo: self.leftAnchor, constant: imageView.frame.width + 66).isActive = true
+        
         label.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
      
         
@@ -47,7 +49,7 @@ class HeaderCollectionView: UICollectionReusableView  {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 20)
+        imageView.frame = CGRect(x: 8, y: 8, width: 50, height: 50)
         self.clipsToBounds = true
     }
     

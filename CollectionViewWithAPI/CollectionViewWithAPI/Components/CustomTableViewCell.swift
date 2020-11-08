@@ -32,13 +32,5 @@ class CustomTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        cashImage.frame = CGRect(x: .zero, y: .zero,
-                                 width: contentView.frame.size.width,
-                                 height: contentView.frame.size.height)
-  
-    
-    }
 
 }

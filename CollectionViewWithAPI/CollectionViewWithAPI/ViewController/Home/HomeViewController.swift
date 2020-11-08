@@ -9,10 +9,10 @@ import UIKit
 import Kingfisher
 
 class HomeViewController: UIViewController, Storyboarded {
-    
+    var activityView: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     private var layoutTop = UICollectionViewFlowLayout()
     private var layoutBottom = UICollectionViewFlowLayout()
-
+    
     private var topCollectionView: UICollectionView?
     private var bottomCollectionView: UICollectionView?
     private var tableView = UITableView()
@@ -22,27 +22,31 @@ class HomeViewController: UIViewController, Storyboarded {
     
     weak var coordinator: MainCoordinator?
     var viewModel = HomeViewModel()
-   
+    
+    var alert = Alerts()
+    //flag to when be not connected
+    var repeats = true
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.fetchProducts()
-    
+       
+      
+        
         layoutTop = setupTopLayout(layout: layoutTop)
         layoutBottom = setupBottomLayout(layout: layoutBottom)
         
-        // react
+     
         topCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutTop)
         bottomCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutBottom)
         tableView.frame = CGRect(x: .zero, y: .zero, width: widthScreen, height: heighScreen)
         
-       
+        
         guard var topCollectionView = topCollectionView,
               var bottomCollectionView = bottomCollectionView else {
             return
         }
         enableDelegates()
         registerCustomCell()
-   
+        
         setupCollectionView(collectionView: topCollectionView)
         setupCollectionView(collectionView: bottomCollectionView)
         
@@ -59,37 +63,54 @@ class HomeViewController: UIViewController, Storyboarded {
         tableView = setupTableView(tableView: tableView)
         tableView = addTableViewContraints(tableView: tableView)
         
+    }
     
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //open a thread and test the connectivity
+    
+        checkConectivity()
+        self.navigationController?.isNavigationBarHidden = true
+        
     }
     
 }
 
 extension HomeViewController {
     
+  
     func setupTableView(tableView: UITableView) -> UITableView{
         tableView.isScrollEnabled = false
         return tableView
     }
-    // MARK: - Registers
+    // MARK: - Registers Cells
     func  registerCustomCell(){
-        //header
-       
         topCollectionView?.register(TopCustomCollectionViewCell.self, forCellWithReuseIdentifier: TopCustomCollectionViewCell.indentfier)
-        
-     
 
-        
         bottomCollectionView?.register(BottomCustomCollectionViewCell.self, forCellWithReuseIdentifier: BottomCustomCollectionViewCell.indentfier)
         
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.indentfier)
         
-
         self.topCollectionView?.register(HeaderCollectionView.self, forSupplementaryViewOfKind:
-                                        UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.indentfier)
+                                            UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.indentfier)
         
         self.bottomCollectionView?.register(HeaderCollectionView.self, forSupplementaryViewOfKind:
-                                        UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.indentfier)
+                                                UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.indentfier)
+        
+    }
+    func showActivityIndicator() {
+       
+        self.activityView.center = self.view.center
+        self.view.addSubview(activityView)
+        activityView.startAnimating()
+        activityView.isHidden = false
+    }
+
+    func hideActivityIndicator(){
+      
+            activityView.stopAnimating()
+            activityView.isHidden = true
         
     }
     func enableDelegates(){
@@ -102,36 +123,38 @@ extension HomeViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-
+        
     }
     
     
     func addTopContraints(collectionView: UICollectionView) -> UICollectionView{
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: heighScreen * 0.33).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 64).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: heighScreen * 0.3).isActive = true
         collectionView.backgroundColor = .red
+        collectionView.layer.cornerRadius = 15
         return collectionView
     }
     
     
     func addBottoContraints(collectionView: UICollectionView) -> UICollectionView{
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: heighScreen * 0.33).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -16).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: heighScreen * 0.3).isActive = true
+        collectionView.layer.cornerRadius = 15
         collectionView.backgroundColor = .yellow
         return collectionView
     }
     
     func addTableViewContraints(tableView: UITableView) -> UITableView{
-        tableView.topAnchor.constraint(equalTo: topCollectionView!.bottomAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: bottomCollectionView!.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: topCollectionView!.bottomAnchor, constant: 16).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: bottomCollectionView!.topAnchor, constant: -16).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -8).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         tableView.translatesAutoresizingMaskIntoConstraints = false
- 
+        
         return tableView
     }
     
@@ -155,6 +178,25 @@ extension HomeViewController {
         return layout
     }
     
+    func checkConectivity(){
+        if CheckConnectivity.isConnectedToInternet{
+            viewModel.fetchProducts()
+            self.repeats = false
+            
+        }else{
+            let result = alert.alertOffline()
+            present(result, animated: true, completion: {
+                
+                Timer.scheduledTimer(withTimeInterval: 10, repeats: self.repeats) { (_) in
+                    self.viewModel.fetchProducts()
+                    self.tableView.reloadData()
+                    self.topCollectionView?.reloadData()
+                    self.bottomCollectionView?.reloadData()
+                    self.repeats = true
+                }
+            })
+        }
+    }
 }
 
 //MARK: - UITableViewDelegate
@@ -162,32 +204,36 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
         view.tintColor = ColorSystem.defaultBackgroundColor
-       
+        
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
-        tableView.bounds.height
+        tableView.bounds.height / 2
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        viewModel.homeModel.cash?.title
+        return viewModel.homeModel.cash?.title
     }
     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.indentfier, for: indexPath as IndexPath) as! CustomTableViewCell
         if let url = URL (string: viewModel.homeModel.cash?.bannerURL ?? "goK"){
             cell.imageView?.kf.setImage(with: url)
         }
-//        cell.selectionStyle = .none
+        
+//        tableView.selectionStyle = false
+        tableView.separatorStyle = .none
+        tableView.isScrollEnabled = false
         
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.goToDetails(result: viewModel.homeModel, index: indexPath)
+        coordinator?.goToDetails(result: viewModel.homeModel, viewType: tableView, index: indexPath)
     }
     
 }
@@ -196,11 +242,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
 extension HomeViewController: HomeServiceDelegate{
     func onHomeFetched(_ result: Results) {
         viewModel.homeModel = result
-        
+        showActivityIndicator()
         DispatchQueue.main.async {
             self.topCollectionView?.reloadData()
             self.bottomCollectionView?.reloadData()
             self.tableView.reloadData()
+            self.hideActivityIndicator()
         }
         
     }
@@ -209,7 +256,7 @@ extension HomeViewController: HomeServiceDelegate{
 //MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
- 
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView.tag == topCollectionView?.tag{
@@ -219,44 +266,35 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         }else{
             fatalError()
         }
-       
+        
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
-        coordinator?.goToDetails(result: viewModel.homeModel, index: indexPath)
+       
+        coordinator?.goToDetails(result: viewModel.homeModel, viewType: collectionView, index: indexPath)
     }
     
-
- 
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-     
-        
         if collectionView.tag == topCollectionView?.tag{
-        
-           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopCustomCollectionViewCell.indentfier, for: indexPath) as! TopCustomCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopCustomCollectionViewCell.indentfier, for: indexPath) as! TopCustomCollectionViewCell
             
-            if let url = URL (string: viewModel.homeModel.spotlight?[indexPath.row].bannerURL ?? "goK"){
+            if let url = URL (string: viewModel.homeModel.spotlight?[indexPath.row].bannerURL ?? ""){
                 cell.imageView.kf.setImage(with: url)
             }
-     
-            
             return cell
-        }else if collectionView.tag == bottomCollectionView?.tag{
+        }else{
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BottomCustomCollectionViewCell.indentfier, for: indexPath) as! BottomCustomCollectionViewCell
             
-            if let url = URL (string: viewModel.homeModel.products?[indexPath.row].imageURL ?? "goK"){
+            if let url = URL (string: viewModel.homeModel.products?[indexPath.row].imageURL ?? ""){
                 cell.imageView.kf.setImage(with: url)
-                
+                return cell
+            }
         }
-            return cell
-        }else{
-            print("alo")
-        }
-        
         return UICollectionViewCell()
     }
     
@@ -268,6 +306,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
         if kind == UICollectionView.elementKindSectionHeader {
             let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionView.indentfier, for: indexPath) as! HeaderCollectionView
             
@@ -277,13 +316,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             }else{
                 sectionHeader.label.text = viewModel.homeModel.products?[indexPath.row].name
             }
+            return sectionHeader
             
-            
-            
-             return sectionHeader
-        } else { //No footer in this case but can add option for that
-             return UICollectionReusableView()
         }
+        return UICollectionReusableView()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
