@@ -33,11 +33,11 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         child.goToHome()
     }
     
-    func goToDetails(){
+    func goToDetails(result: Results, index: IndexPath){
         let child = DetailsCoordinator(navigationController: navigationController)
         childCoordinators.append(child)
         child.parentCoordinator = self
-        child.goToDetails()
+        child.goToDetails(result: result, index: index)
     }
 
     

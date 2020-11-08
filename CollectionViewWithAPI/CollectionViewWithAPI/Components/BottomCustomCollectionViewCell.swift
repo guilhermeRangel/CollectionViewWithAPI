@@ -14,7 +14,6 @@ class BottomCustomCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "loading")
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .red
         return imageView
     }()
     
@@ -22,12 +21,9 @@ class BottomCustomCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .yellow
+        contentView.backgroundColor = ColorSystem.defaultBackgroundColor
         contentView.addSubview(imageView)
-        
         imageView.translatesAutoresizingMaskIntoConstraints = false
-    
-        print(imageView.frame)
         contentView.clipsToBounds = true
        
     }

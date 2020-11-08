@@ -20,7 +20,7 @@ class TopCustomCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .red
+        contentView.backgroundColor = ColorSystem.defaultBackgroundColor
         contentView.addSubview(imageView)
     }
     required init?(coder: NSCoder) {

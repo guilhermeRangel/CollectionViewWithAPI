@@ -9,10 +9,13 @@ import UIKit
 
 class DetailsViewController: UIViewController, Storyboarded {
     weak var coordinator: MainCoordinator?
+    var viewModel: Results!
+    var indexPath: IndexPath!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.backgroundColor = .red
+        guard let viewModel = viewModel else {return}
+        print(viewModel.products)
     }
     
 

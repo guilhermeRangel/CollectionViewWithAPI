@@ -11,18 +11,6 @@ class CustomTableViewCell: UITableViewCell {
     
     static let indentfier = "CustomTableViewCell"
    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        contentView.backgroundColor = .gray
-       
-        contentView.addSubview(cashImage)
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     let cashImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "loading")
@@ -30,4 +18,27 @@ class CustomTableViewCell: UITableViewCell {
         
         return imageView
     }()
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        contentView.backgroundColor = ColorSystem.defaultBackgroundColor
+        contentView.addSubview(cashImage)
+        cashImage.translatesAutoresizingMaskIntoConstraints = false
+        contentView.clipsToBounds = true
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        cashImage.frame = CGRect(x: .zero, y: .zero,
+                                 width: contentView.frame.size.width,
+                                 height: contentView.frame.size.height)
+  
+    
+    }
+
 }
