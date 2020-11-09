@@ -63,12 +63,12 @@ class HomeViewController: UIViewController, Storyboarded {
         tableView = setupTableView(tableView: tableView)
         tableView = addTableViewContraints(tableView: tableView)
         
-        if let topFlowLayout = topCollectionView.collectionViewLayout as? UICollectionViewFlowLayout , let bottomFlowLayout = bottomCollectionView.collectionViewLayout as? UICollectionViewFlowLayout{
-
-            topFlowLayout.sectionHeadersPinToVisibleBounds = true
-            bottomFlowLayout.sectionHeadersPinToVisibleBounds = true
-
-        }
+//        if let topFlowLayout = topCollectionView.collectionViewLayout as? UICollectionViewFlowLayout , let bottomFlowLayout = bottomCollectionView.collectionViewLayout as? UICollectionViewFlowLayout{
+//
+//            topFlowLayout.sectionHeadersPinToVisibleBounds = true
+//            bottomFlowLayout.sectionHeadersPinToVisibleBounds = true
+//
+//        }
         
     }
     
