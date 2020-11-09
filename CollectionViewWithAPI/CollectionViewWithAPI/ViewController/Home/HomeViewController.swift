@@ -63,6 +63,13 @@ class HomeViewController: UIViewController, Storyboarded {
         tableView = setupTableView(tableView: tableView)
         tableView = addTableViewContraints(tableView: tableView)
         
+        if let topFlowLayout = topCollectionView.collectionViewLayout as? UICollectionViewFlowLayout , let bottomFlowLayout = bottomCollectionView.collectionViewLayout as? UICollectionViewFlowLayout{
+
+            topFlowLayout.sectionHeadersPinToVisibleBounds = true
+            bottomFlowLayout.sectionHeadersPinToVisibleBounds = true
+
+        }
+        
     }
     
     
@@ -97,6 +104,7 @@ extension HomeViewController {
         
         self.bottomCollectionView?.register(HeaderCollectionView.self, forSupplementaryViewOfKind:
                                                 UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionView.indentfier)
+        
         
     }
     func showActivityIndicator() {
@@ -256,7 +264,6 @@ extension HomeViewController: HomeServiceDelegate{
 //MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView.tag == topCollectionView?.tag{
@@ -271,11 +278,11 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+        print("\(indexPath.row)")
         coordinator?.goToDetails(result: viewModel.homeModel, viewType: collectionView, index: indexPath)
     }
     
-    
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -323,7 +330,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width, height: 30.0)
+        return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height * 0.5)
     }
     
 }

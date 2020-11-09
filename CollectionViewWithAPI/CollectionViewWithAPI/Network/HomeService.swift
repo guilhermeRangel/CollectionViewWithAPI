@@ -8,7 +8,7 @@
 import Foundation
 
 
-protocol HomeServiceProtocol: class {
+protocol HomeServiceProtocol {
     func fetchAllProducts()
 }
 
@@ -16,8 +16,8 @@ protocol HomeServiceDelegate {
     func onHomeFetched(_ result: Results)
 }
 
-class HomeService: HomeServiceProtocol {
-    var homeServiceDelegate: HomeServiceDelegate?
+struct HomeService: HomeServiceProtocol {
+     var homeServiceDelegate: HomeServiceDelegate?
     
     func fetchAllProducts(){
         EventService<Results>.fetchProducts.request { result in
